@@ -1,0 +1,26 @@
+:root {
+  --primary: #192a56;
+  --secondary: #ecf0f1;
+  --tertiary: #9ab2c8;
+  --accent: white;
+}
+
+html {
+  font-family: system-ui, sans-serif;
+  background-color: #fafafa;
+}
+
+body {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+  margin: 0;
+}
+
+main {
+  width: 100%;
+}
+
+h2 {
+  color: var(--primary);
+}
