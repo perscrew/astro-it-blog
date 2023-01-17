@@ -1,0 +1,71 @@
+---
+import MainLayout from "./Layout.astro";
+
+export interface Props {
+  content: {
+    title: string;
+    pubDate?: string;
+    excerpt: string;
+    heroImage?: string;
+  };
+}
+const {
+  content: { title, pubDate, excerpt, heroImage },
+} = Astro.props;
+---
+
+<MainLayout title={title}>
+  <article>
+    {heroImage && <img src={heroImage} alt={title} class="hero-image" />}
+    <h1>{title}</h1>
+    {
+      pubDate && (
+        <time>
+          Publié le{" "}
+          {new Date(pubDate).toLocaleDateString("fr-FR", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })}
+        </time>
+      )
+    }
+    <hr />
+    <slot />
+  </article>
+</MainLayout>
+
+<style>
+  article {
+    padding: 1rem;
+    max-width: 64rem;
+    margin: auto;
+  }
+
+  .hero-image {
+    display: block;
+    border-radius: 15px;
+    margin: auto;
+    margin-bottom: 2rem;
+    filter: drop-shadow(0 0 0.2rem grey);
+  }
+
+  time {
+    font-style: italic;
+    font-size: 0.9rem;
+  }
+
+  article h1 {
+    color: var(--primary);
+  }
+
+  article :global(h2) {
+    color: var(--tertiary);
+  }
+
+  @media only screen and (max-width: 600px) {
+    .hero-image {
+      max-width: 300px;
+    }
+  }
+</style>
