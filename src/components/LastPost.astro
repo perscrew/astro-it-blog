@@ -1,0 +1,42 @@
+---
+import PostCard from "./PostCard.astro";
+---
+
+<section class="last-posts">
+  <h2>Les derniers articles</h2>
+  <div class="post-list">
+    <PostCard
+      href="/posts/premier-article"
+      title="Titre article"
+      excerpt="courte descritpion de l'article."
+      pubDate="Jun 17 2023"
+      heroImage="/image-tech.jpg"
+    />
+    <PostCard
+      href="/posts/premier-article"
+      title="Titre article"
+      excerpt="courte descritpion de l'article."
+      pubDate="Jun 17 2023"
+      heroImage="/image-tech.jpg"
+    />
+  </div>
+</section>
+
+<style>
+  .last-posts {
+    margin: 1rem 0;
+    padding: 0 1rem;
+  }
+
+  .post-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  @media only screen and (max-width: 600px) {
+    .post-list {
+      justify-content: center;
+    }
+  }
+</style>
