@@ -3,6 +3,8 @@
   --secondary: #ecf0f1;
   --tertiary: #9ab2c8;
   --accent: white;
+  --border: #d7d9d9;
+  --text: #4f4f4f;
 }
 
 html {

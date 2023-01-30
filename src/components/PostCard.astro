@@ -1,0 +1,57 @@
+---
+import Time from "./Time.astro";
+
+export interface Props {
+  url: string;
+  title: string;
+  pubDate?: string;
+  excerpt: string;
+  heroImage?: string;
+}
+
+const { url, title, pubDate, excerpt, heroImage } = Astro.props;
+---
+
+<a href={url} class="post-card">
+  <img src={heroImage} />
+  <div class="post-card-container">
+    <h3>{title}</h3>
+    {pubDate && <Time date={pubDate} />}
+    <p>{excerpt}</p>
+  </div>
+</a>
+
+<style>
+  .post-card {
+    display: block;
+    text-decoration: none;
+    border-radius: 1rem;
+    border: 1px solid var(--border);
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    color: var(--text);
+  }
+
+  .post-card:hover {
+    text-decoration: none;
+    box-shadow: rgba(99, 99, 99, 0.4) 0px 2px 8px 0px;
+  }
+
+  img {
+    border-top-right-radius: 1rem;
+    border-top-left-radius: 1rem;
+  }
+
+  img,
+  .post-card {
+    max-width: 340px;
+  }
+
+  .post-card-container {
+    padding: 0 1rem;
+  }
+
+  h3 {
+    margin: 0.3rem 0;
+    color: var(--primary);
+  }
+</style>
