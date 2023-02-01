@@ -1,7 +1,7 @@
 ---
 layout: "../../layouts/BlogLayout.astro"
 title: "Notre premier article dans notre Blog"
-pubDate: "Jun 17 2023"
+pubDate: "Jan 17 2023"
 heroImage: "/image-tech.jpg"
 excerpt: "Découvrez notre premier article de Blog."
 ---

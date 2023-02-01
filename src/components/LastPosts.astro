@@ -1,24 +1,15 @@
 ---
+import { getLastPosts } from "../services/posts";
 import PostCard from "./PostCard.astro";
+
+const posts = await Astro.glob("../pages/posts/*.{md,mdx}");
+const lastPosts = getLastPosts(posts);
 ---
 
 <section class="last-posts">
   <h2>Les derniers articles</h2>
   <div class="post-list">
-    <PostCard
-      url="/posts/premier-article"
-      title="Titre article"
-      excerpt="courte descritpion de l'article."
-      pubDate="Jun 17 2023"
-      heroImage="/image-tech.jpg"
-    />
-    <PostCard
-      url="/posts/premier-article"
-      title="Titre article"
-      excerpt="courte descritpion de l'article."
-      pubDate="Jun 17 2023"
-      heroImage="/image-tech.jpg"
-    />
+    {lastPosts.map((post) => <PostCard {...post} />)}
   </div>
 </section>
 
