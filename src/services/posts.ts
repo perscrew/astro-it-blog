@@ -2,6 +2,10 @@ import type { MarkdownPost, Post } from "../models/post";
 
 const LAST_POST_LIMIT = 10;
 
+export function getPosts(posts: Record<string, any>): Post[] {
+  return posts.map(mapMarkdownPost);
+}
+
 export function getLastPosts(posts: Record<string, any>): Post[] {
   return posts.slice(0, LAST_POST_LIMIT).map(mapMarkdownPost);
 }

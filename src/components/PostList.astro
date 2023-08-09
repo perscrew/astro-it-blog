@@ -1,0 +1,21 @@
+---
+import type { Post } from "../models/post";
+import PostCard from "./PostCard.astro";
+export interface Props {
+  posts: Post[];
+}
+
+const { posts } = Astro.props;
+---
+
+<div class="post-list">
+  {posts.map((post) => <PostCard {...post} />)}
+</div>
+
+<style>
+  .post-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+</style>
