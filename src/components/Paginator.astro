@@ -1,0 +1,65 @@
+---
+import type { Page } from "astro";
+import type { Post } from "../models/post";
+export interface Props {
+  page: Page<Post>;
+}
+
+const { page } = Astro.props;
+---
+
+<nav aria-label="Navigation par page" class="paginator-list">
+  <ul>
+    {
+      page.lastPage > 1 &&
+        [...Array(page.lastPage).keys()].map((index) => {
+          const isCurrentPage = index + 1 === page.currentPage;
+          return (
+            <li>
+              {isCurrentPage ? (
+                <span class="active"> {index + 1}</span>
+              ) : (
+                <a
+                  aria-current={isCurrentPage ? "page" : "false"}
+                  href={`/posts/${index + 1}`}
+                >
+                  {index + 1}
+                </a>
+              )}
+            </li>
+          );
+        })
+    }
+  </ul>
+</nav>
+
+<style>
+  .paginator-list {
+    display: flex;
+    justify-content: center;
+  }
+
+  .paginator-list ul {
+    display: inline-flex;
+    margin-top: 1rem;
+    list-style-type: none;
+    padding-left: 0;
+  }
+
+  .paginator-list li {
+    margin-left: 1rem;
+  }
+
+  .paginator-list a {
+    text-decoration: none;
+    color: var(--primary);
+  }
+
+  .paginator-list a:hover {
+    color: var(--text);
+  }
+
+  .paginator-list .active {
+    color: var(--tertiary);
+  }
+</style>

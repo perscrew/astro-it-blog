@@ -1,0 +1,38 @@
+---
+import type { Page } from "astro";
+import Container from "../../components/Container.astro";
+import Paginator from "../../components/Paginator.astro";
+import PostList from "../../components/PostList.astro";
+import Layout from "../../layouts/Layout.astro";
+import type { Post } from "../../models/post";
+import { POST_PER_PAGE, getPosts } from "../../services/posts";
+
+export interface Props {
+  page: Page<Post>;
+}
+
+export async function getStaticPaths({ paginate }: any) {
+  const posts = await Astro.glob("./*.{md,mdx}");
+  const allPosts = getPosts(posts);
+
+  return paginate(allPosts, { pageSize: POST_PER_PAGE });
+}
+
+const { page } = Astro.props;
+---
+
+<Layout title="Articles IT">
+  <Container>
+    <section>
+      <h1>Les articles du blog</h1>
+      <PostList posts={page.data} />
+      <Paginator page={page} />
+    </section>
+  </Container>
+</Layout>
+
+<style>
+  h1 {
+    margin-left: 1rem;
+  }
+</style>

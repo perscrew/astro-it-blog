@@ -1,6 +1,7 @@
 import type { MarkdownPost, Post } from "../models/post";
 
 const LAST_POST_LIMIT = 10;
+export const POST_PER_PAGE = 2;
 
 export function getPosts(posts: Record<string, any>): Post[] {
   return posts.map(mapMarkdownPost);
